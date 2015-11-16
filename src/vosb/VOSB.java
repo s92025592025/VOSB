@@ -21,15 +21,15 @@ public class VOSB {
     public final static String PARENT_DIR = "/FinalRecreation/"; //uesed to store common file dir
     public final static String STARTING_PIC = "VOSB_01.jpg";
     private Map<String, List<String>> story;  //used to store stories
-    private File picContent;  //use to store pic index
+    //private File picContent;  //use to store pic index
     
     //pre: picContent should be vaild, or it will throw FileNotFoundException
     //post: the map should be done
     public VOSB() throws FileNotFoundException {
         this.story = new HashMap<String, List<String>>();
         //BufferedInputStream input = new BufferedInputStream(this.getClass().getResourceAsStream(parentDir + "picContent.txt"));
-        this.picContent = new File("D:\\Academic\\UW stuff\\ENGL 111 V\\week08\\VOSB\\src\\FinalRecreation\\picContent.txt");
-        this.addInMap(new Scanner(this.picContent));
+        //this.picContent = new File("D:\\Academic\\UW stuff\\ENGL 111 V\\week08\\VOSB\\src\\FinalRecreation\\picContent.txt");
+        this.addInMap(new Scanner(this.getClass().getResourceAsStream( "/FinalRecreation/picContent.txt" )));
     }
     
     //pre: should enter the label behind VOSB_

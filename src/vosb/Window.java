@@ -164,7 +164,7 @@ public class Window extends javax.swing.JFrame {
         //set the icon as the user choosed
         this.mainL.setIcon(new ImageIcon(this.getClass().getResource(this.plot.PARENT_DIR + this.current.get(1))));
         //switch to the next scene
-        this.current = this.plot.getNextPic(this.current.get(0));
+        this.current = this.plot.getNextPic(this.current.get(1));
         //put everything back to original status
         this.ABtn.setEnabled(false);
         this.BBtn.setEnabled(false);
