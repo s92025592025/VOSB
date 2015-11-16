@@ -5,20 +5,32 @@
  */
 package vosb;
 
+//import package
+import java.io.FileNotFoundException;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import java.util.List;
+import java.util.ArrayList;
 
 /**
  *
  * @author Daniel123
  */
 public class Window extends javax.swing.JFrame {
-    //used to store file directory
-    public final static String parentDir = "/FinalRecreation/";
+
+    //Fileds
+    private VOSB plot; //used to run the story plots
+    private List<String> current;
+    private JButton testBtn;
     /**
      * Creates new form Window
      */
-    public Window() {
+    public Window() throws FileNotFoundException {
         initComponents();
+        this.plot = new VOSB();
+        this.current = new ArrayList<String>();
+        this.current.add(this.plot.STARTING_PIC);
+        
     }
 
     /**
@@ -30,12 +42,63 @@ public class Window extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        PicL = new javax.swing.JLabel();
-        NextBtn = new javax.swing.JButton();
+        jDesktopPane1 = new javax.swing.JDesktopPane();
+        jDesktopPane2 = new javax.swing.JDesktopPane();
+        nextBtn = new javax.swing.JButton();
+        mainL = new javax.swing.JLabel();
+        ABtn = new javax.swing.JButton();
+        BBtn = new javax.swing.JButton();
+
+        javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
+        jDesktopPane1.setLayout(jDesktopPane1Layout);
+        jDesktopPane1Layout.setHorizontalGroup(
+            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+        jDesktopPane1Layout.setVerticalGroup(
+            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout jDesktopPane2Layout = new javax.swing.GroupLayout(jDesktopPane2);
+        jDesktopPane2.setLayout(jDesktopPane2Layout);
+        jDesktopPane2Layout.setHorizontalGroup(
+            jDesktopPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+        jDesktopPane2Layout.setVerticalGroup(
+            jDesktopPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
-        NextBtn.setText("NEXT!!");
+        nextBtn.setText("Next");
+        nextBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nextBtnActionPerformed(evt);
+            }
+        });
+
+        mainL.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
+        ABtn.setText("Do something else");
+        ABtn.setToolTipText("");
+        ABtn.setEnabled(false);
+        ABtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ABtnActionPerformed(evt);
+            }
+        });
+
+        BBtn.setText("Believe in God!!");
+        BBtn.setEnabled(false);
+        BBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -44,30 +107,74 @@ public class Window extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(50, 50, 50)
-                        .addComponent(PicL, javax.swing.GroupLayout.PREFERRED_SIZE, 658, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(47, 47, 47)
+                        .addComponent(mainL, javax.swing.GroupLayout.PREFERRED_SIZE, 779, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(320, 320, 320)
-                        .addComponent(NextBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(74, Short.MAX_VALUE))
+                        .addGap(159, 159, 159)
+                        .addComponent(ABtn)
+                        .addGap(74, 74, 74)
+                        .addComponent(nextBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(52, 52, 52)
+                        .addComponent(BBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(56, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(PicL, javax.swing.GroupLayout.PREFERRED_SIZE, 486, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(NextBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 61, Short.MAX_VALUE)
-                .addGap(41, 41, 41))
+                .addComponent(mainL, javax.swing.GroupLayout.DEFAULT_SIZE, 598, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE, false)
+                    .addComponent(nextBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(BBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ABtn, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void nextBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextBtnActionPerformed
+        //set the icon to be the preceeding scene
+        this.mainL.setIcon(new ImageIcon(this.getClass().getResource(this.plot.PARENT_DIR + this.current.get(0))));
+        //switch to the next scene
+        this.current = this.plot.getNextPic(this.current.get(0));
+        if(this.current.size() != 1){
+            //make the options enabled and nextBut disabled
+            this.ABtn.setEnabled(true);
+            this.BBtn.setEnabled(true);
+            this.nextBtn.setEnabled(false);
+        }
+    }//GEN-LAST:event_nextBtnActionPerformed
+
+       //if the user choosed to do something else.......
+    private void ABtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ABtnActionPerformed
+        //set the icon as the user choosed
+        this.mainL.setIcon(new ImageIcon(this.getClass().getResource(this.plot.PARENT_DIR + this.current.get(0))));
+        //switch to the next scene
+        this.current = this.plot.getNextPic(this.current.get(0));
+        //put everything back to original status
+        this.ABtn.setEnabled(false);
+        this.BBtn.setEnabled(false);
+        this.nextBtn.setEnabled(true);
+    }//GEN-LAST:event_ABtnActionPerformed
+
+    //if the user choose to believe in God
+    private void BBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BBtnActionPerformed
+        //set the icon as the user choosed
+        this.mainL.setIcon(new ImageIcon(this.getClass().getResource(this.plot.PARENT_DIR + this.current.get(1))));
+        //switch to the next scene
+        this.current = this.plot.getNextPic(this.current.get(0));
+        //put everything back to original status
+        this.ABtn.setEnabled(false);
+        this.BBtn.setEnabled(false);
+        this.nextBtn.setEnabled(true);
+    }//GEN-LAST:event_BBtnActionPerformed
+
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]){
+    public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -92,23 +199,23 @@ public class Window extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        /*java.awt.EventQueue.invokeLater(new Runnable() {
+        java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Window().setVisible(true);
+                try{
+                    new Window().setVisible(true);
+                }catch(Exception e){
+                    System.out.println(e.toString());
+                }
             }
-        });*/
-        
-        //Start my window
-        Window win = new Window();
-        //make my window visible
-        win.setVisible(true);
-        //win.PicL.setIcon(new ImageIcon(win.getClass().getResource("/FinalRecreation/VOSB_01.jpg")));
-        
-        
+        }) ;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton NextBtn;
-    private javax.swing.JLabel PicL;
+    private javax.swing.JButton ABtn;
+    private javax.swing.JButton BBtn;
+    private javax.swing.JDesktopPane jDesktopPane1;
+    private javax.swing.JDesktopPane jDesktopPane2;
+    private javax.swing.JLabel mainL;
+    private javax.swing.JButton nextBtn;
     // End of variables declaration//GEN-END:variables
 }
