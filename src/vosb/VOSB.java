@@ -20,19 +20,23 @@ import java.io.BufferedInputStream;
 public class VOSB {
     public final static String PARENT_DIR = "/FinalRecreation/"; //uesed to store common file dir
     public final static String STARTING_PIC = "VOSB_01.jpg";
+    public static final String HTML_HEAD = "<html><p>";
+    public static final String HTML_END = "</html></p>";
     private Map<String, List<String>> story;  //used to store stories
-    //private File picContent;  //use to store pic index
+    private Map<String, String> discription; //used to store the displayed discription
     
     //pre: picContent should be vaild, or it will throw FileNotFoundException
     //post: the map should be done
     public VOSB() throws FileNotFoundException {
+        //starting to put in all the scene route
         this.story = new HashMap<String, List<String>>();
-        //BufferedInputStream input = new BufferedInputStream(this.getClass().getResourceAsStream(parentDir + "picContent.txt"));
-        //this.picContent = new File("D:\\Academic\\UW stuff\\ENGL 111 V\\week08\\VOSB\\src\\FinalRecreation\\picContent.txt");
-        this.addInMap(new Scanner(this.getClass().getResourceAsStream( "/FinalRecreation/picContent.txt" )));
+        this.picAddInMap(new Scanner(this.getClass().getResourceAsStream( "/FinalRecreation/picContent.txt" )));
+        //starting to put in the discription of each picture
+        this.discription = new HashMap<String, String>();
+        this.disAddInMap(new Scanner(this.getClass().getResourceAsStream(PARENT_DIR + "discriptionContent.txt")));
     }
     
-    //pre: should enter the label behind VOSB_
+    //pre: should enter the while file name(included property)
     //post: return the next picture the client want
     public List<String> getNextPic(String label) throws IllegalArgumentException {
         //check whether there is a next pic
@@ -42,6 +46,12 @@ public class VOSB {
         return this.story.get(label);
     }
     
+    //pre: pre: should enter the while file name(included property)
+    //post: return a String contains the discription of the picture
+    public String getDiscrip(String label){
+        return this.HTML_HEAD + this.discription.get(label) + this.HTML_END;
+    }
+    
     //pre: enter the current and vaild scene
     //post: tell you whether is next
     public boolean storyEnd(String scene) {
@@ -49,7 +59,7 @@ public class VOSB {
     }
     
     //put the content onto the map
-    private void addInMap(Scanner sc) {
+    private void picAddInMap(Scanner sc) {
         while(sc.hasNextLine()){
             //used to store the whole line
             String s = sc.nextLine();
@@ -67,5 +77,15 @@ public class VOSB {
         }
         
         System.out.println(story.toString());
+    }
+    
+    //put in the discreption of each pic
+    private void disAddInMap(Scanner sc) {
+        while(sc.hasNextLine()){
+            String s[] = sc.nextLine().split("::=");
+            this.discription.put(s[0].trim(), s[1].trim());
+        }
+        
+        System.out.println(this.discription);
     }
 }

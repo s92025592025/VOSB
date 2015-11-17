@@ -21,7 +21,7 @@ public class Window extends javax.swing.JFrame {
     //Fileds
     private VOSB plot; //used to run the story plots
     private List<String> current;
-    private JButton testBtn;
+
     /**
      * Creates new form Window
      */
@@ -48,6 +48,7 @@ public class Window extends javax.swing.JFrame {
         mainL = new javax.swing.JLabel();
         ABtn = new javax.swing.JButton();
         BBtn = new javax.swing.JButton();
+        describingL = new javax.swing.JLabel();
 
         javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
         jDesktopPane1.setLayout(jDesktopPane1Layout);
@@ -82,10 +83,13 @@ public class Window extends javax.swing.JFrame {
         });
 
         mainL.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        mainL.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FinalRecreation/VOSB_00.jpg"))); // NOI18N
 
         ABtn.setText("Do something else");
         ABtn.setToolTipText("");
         ABtn.setEnabled(false);
+        ABtn.setMaximumSize(new java.awt.Dimension(127, 27));
+        ABtn.setMinimumSize(new java.awt.Dimension(127, 27));
         ABtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ABtnActionPerformed(evt);
@@ -100,6 +104,10 @@ public class Window extends javax.swing.JFrame {
             }
         });
 
+        describingL.setFont(new java.awt.Font("Bradley Hand ITC", 0, 24)); // NOI18N
+        describingL.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        describingL.setText("<html><p>Let us explore how Brendan made himself a hero by his persistence faith in God!!</p></html>");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -108,27 +116,31 @@ public class Window extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(47, 47, 47)
-                        .addComponent(mainL, javax.swing.GroupLayout.PREFERRED_SIZE, 779, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(describingL, javax.swing.GroupLayout.PREFERRED_SIZE, 779, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(mainL, javax.swing.GroupLayout.PREFERRED_SIZE, 779, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(159, 159, 159)
-                        .addComponent(ABtn)
+                        .addGap(143, 143, 143)
+                        .addComponent(ABtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(74, 74, 74)
                         .addComponent(nextBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(52, 52, 52)
+                        .addGap(74, 74, 74)
                         .addComponent(BBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(56, Short.MAX_VALUE))
+                .addContainerGap(47, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(mainL, javax.swing.GroupLayout.DEFAULT_SIZE, 598, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(describingL, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(mainL, javax.swing.GroupLayout.PREFERRED_SIZE, 680, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE, false)
                     .addComponent(nextBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(BBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(ABtn, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                .addGap(34, 34, 34))
         );
 
         pack();
@@ -137,6 +149,8 @@ public class Window extends javax.swing.JFrame {
     private void nextBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextBtnActionPerformed
         //set the icon to be the preceeding scene
         this.mainL.setIcon(new ImageIcon(this.getClass().getResource(this.plot.PARENT_DIR + this.current.get(0))));
+        //change the text to the corresponding scene
+        this.describingL.setText(this.plot.getDiscrip(this.current.get(0)));
         //switch to the next scene
         this.current = this.plot.getNextPic(this.current.get(0));
         if(this.current.size() != 1){
@@ -151,6 +165,8 @@ public class Window extends javax.swing.JFrame {
     private void ABtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ABtnActionPerformed
         //set the icon as the user choosed
         this.mainL.setIcon(new ImageIcon(this.getClass().getResource(this.plot.PARENT_DIR + this.current.get(0))));
+        //make the discription correspond to the scene
+        this.describingL.setText(this.plot.getDiscrip(this.current.get(0)));
         //switch to the next scene
         this.current = this.plot.getNextPic(this.current.get(0));
         //put everything back to original status
@@ -163,6 +179,8 @@ public class Window extends javax.swing.JFrame {
     private void BBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BBtnActionPerformed
         //set the icon as the user choosed
         this.mainL.setIcon(new ImageIcon(this.getClass().getResource(this.plot.PARENT_DIR + this.current.get(1))));
+        //make the discription correspond to the scene
+        this.describingL.setText(this.plot.getDiscrip(this.current.get(1)));
         //switch to the next scene
         this.current = this.plot.getNextPic(this.current.get(1));
         //put everything back to original status
@@ -213,6 +231,7 @@ public class Window extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ABtn;
     private javax.swing.JButton BBtn;
+    private javax.swing.JLabel describingL;
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JDesktopPane jDesktopPane2;
     private javax.swing.JLabel mainL;
