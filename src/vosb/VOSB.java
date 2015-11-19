@@ -40,7 +40,7 @@ public class VOSB {
     //post: return the next picture the client want
     public List<String> getNextPic(String label) throws IllegalArgumentException {
         //check whether there is a next pic
-        if(!this.storyEnd(label)){
+        if(this.storyEnd(label)){
             throw new IllegalArgumentException();
         }
         return this.story.get(label);
@@ -55,7 +55,7 @@ public class VOSB {
     //pre: enter the current and vaild scene
     //post: tell you whether is next
     public boolean storyEnd(String scene) {
-        return this.story.containsKey(scene);
+        return !this.story.containsKey(scene);
     }
     
     //put the content onto the map

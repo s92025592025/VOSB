@@ -73,6 +73,7 @@ public class Window extends javax.swing.JFrame {
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("The Voyage of St. Brendan little visual novel");
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         nextBtn.setText("Next");
@@ -132,7 +133,7 @@ public class Window extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(describingL, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(describingL, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(mainL, javax.swing.GroupLayout.PREFERRED_SIZE, 680, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -151,13 +152,19 @@ public class Window extends javax.swing.JFrame {
         this.mainL.setIcon(new ImageIcon(this.getClass().getResource(this.plot.PARENT_DIR + this.current.get(0))));
         //change the text to the corresponding scene
         this.describingL.setText(this.plot.getDiscrip(this.current.get(0)));
-        //switch to the next scene
-        this.current = this.plot.getNextPic(this.current.get(0));
-        if(this.current.size() != 1){
-            //make the options enabled and nextBut disabled
-            this.ABtn.setEnabled(true);
-            this.BBtn.setEnabled(true);
+        if(this.plot.storyEnd(this.current.get(0))){  //disable all buttons if everything is done
+            this.ABtn.setEnabled(false);
+            this.BBtn.setEnabled(false);
             this.nextBtn.setEnabled(false);
+        }else{
+            //switch to the next scene
+            this.current = this.plot.getNextPic(this.current.get(0));
+            if(this.current.size() != 1){
+                //make the options enabled and nextBut disabled
+                this.ABtn.setEnabled(true);
+                this.BBtn.setEnabled(true);
+                this.nextBtn.setEnabled(false);
+            }
         }
     }//GEN-LAST:event_nextBtnActionPerformed
 
@@ -167,12 +174,17 @@ public class Window extends javax.swing.JFrame {
         this.mainL.setIcon(new ImageIcon(this.getClass().getResource(this.plot.PARENT_DIR + this.current.get(0))));
         //make the discription correspond to the scene
         this.describingL.setText(this.plot.getDiscrip(this.current.get(0)));
-        //switch to the next scene
-        this.current = this.plot.getNextPic(this.current.get(0));
-        //put everything back to original status
-        this.ABtn.setEnabled(false);
-        this.BBtn.setEnabled(false);
-        this.nextBtn.setEnabled(true);
+        if(this.plot.storyEnd(this.current.get(0))){  //disable all buttons if everything is done
+            this.ABtn.setEnabled(false);
+            this.BBtn.setEnabled(false);
+            this.nextBtn.setEnabled(false);
+        }else{
+            //switch to the next scene
+            this.current = this.plot.getNextPic(this.current.get(0));
+            this.ABtn.setEnabled(false);
+            this.BBtn.setEnabled(false);
+            this.nextBtn.setEnabled(true);
+        }
     }//GEN-LAST:event_ABtnActionPerformed
 
     //if the user choose to believe in God
@@ -181,14 +193,20 @@ public class Window extends javax.swing.JFrame {
         this.mainL.setIcon(new ImageIcon(this.getClass().getResource(this.plot.PARENT_DIR + this.current.get(1))));
         //make the discription correspond to the scene
         this.describingL.setText(this.plot.getDiscrip(this.current.get(1)));
-        //switch to the next scene
-        this.current = this.plot.getNextPic(this.current.get(1));
-        //put everything back to original status
-        this.ABtn.setEnabled(false);
-        this.BBtn.setEnabled(false);
-        this.nextBtn.setEnabled(true);
+        if(this.plot.storyEnd(this.current.get(1))){  //disable all buttons if everything is done
+            this.ABtn.setEnabled(false);
+            this.BBtn.setEnabled(false);
+            this.nextBtn.setEnabled(false);
+        }else{
+            //switch to the next scene
+            this.current = this.plot.getNextPic(this.current.get(1));
+            this.ABtn.setEnabled(false);
+            this.BBtn.setEnabled(false);
+            this.nextBtn.setEnabled(true);
+        }
     }//GEN-LAST:event_BBtnActionPerformed
 
+    
     /**
      * @param args the command line arguments
      */
