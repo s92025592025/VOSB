@@ -18,7 +18,7 @@ import java.io.BufferedInputStream;
  * @author Daniel123
  */
 public class VOSB {
-    public final static String PARENT_DIR = "/FinalRecreation/"; //uesed to store common file dir
+    public final static String PARENT_DIR = "FinalRecreation/"; //uesed to store common file dir
     public final static String STARTING_PIC = "VOSB_01.jpg";
     public static final String HTML_HEAD = "<html><p>";
     public static final String HTML_END = "</html></p>";
@@ -30,10 +30,11 @@ public class VOSB {
     public VOSB() throws FileNotFoundException {
         //starting to put in all the scene route
         this.story = new HashMap<String, List<String>>();
-        this.picAddInMap(new Scanner(this.getClass().getResourceAsStream( "/FinalRecreation/picContent.txt" )));
+        //this.picAddInMap(new Scanner(this.getClass().getResourceAsStream(PARENT_DIR + "/PicContent.txt" )));
+        this.picAddInMap(new Scanner(new File("PicContent.txt" )));
         //starting to put in the discription of each picture
         this.discription = new HashMap<String, String>();
-        this.disAddInMap(new Scanner(this.getClass().getResourceAsStream(PARENT_DIR + "discriptionContent.txt")));
+        this.disAddInMap(new Scanner(new File("discriptionContent.txt")));
     }
     
     //pre: should enter the while file name(included property)
@@ -76,7 +77,7 @@ public class VOSB {
             story.put(str, list);
         }
         
-        System.out.println(story.toString());
+       // System.out.println(story.toString());
     }
     
     //put in the discreption of each pic
@@ -86,6 +87,6 @@ public class VOSB {
             this.discription.put(s[0].trim(), s[1].trim());
         }
         
-        System.out.println(this.discription);
+        //System.out.println(this.discription);
     }
 }
